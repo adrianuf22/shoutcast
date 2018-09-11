@@ -5,8 +5,8 @@ WORKDIR /usr/local/shoutcast
 RUN apt-get update && \
     apt-get install -y wget && \
     apt-get install -y tcpdump && \
-    apt-get install -y iptables && \
-    apt-get install -y vim
+    apt-get install -y vim && \
+    apt-get install -y supervisor
 
 RUN wget http://download.nullsoft.com/shoutcast/tools/sc_serv2_linux_x64_09_09_2014.tar.gz && \
     tar xfz sc* && \
@@ -24,6 +24,8 @@ RUN mkdir sc_trans && \
     chmod a+x sc_trans
 
 EXPOSE 8000
+
+COPY ./supervisord.conf ./
 
 COPY ./entrypoint.sh ./
 RUN chmod a+x ./entrypoint.sh
