@@ -1,0 +1,12 @@
+version: "3.6"
+
+services:
+  shoutcast:
+    build: .
+    ports:
+      - 8000:8000
+    volumes:
+      - "./playlist:/usr/local/shoutcast/sc_trans/music"
+      - "./logs:/var/log/messages"
+      - "./shoutcast/sc_serv.conf:/usr/local/shoutcast/sc_serv.conf"
+      - "./shoutcast/sc_trans_basic.conf:/usr/local/shoutcast/sc_trans/sc_trans_basic.conf"

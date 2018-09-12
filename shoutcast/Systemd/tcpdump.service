@@ -1,0 +1,8 @@
+[Unit]
+Description="TCPDump daemon"
+DefaultDependencies=no
+
+[Service]
+ExecStart=/bin/bash /usr/local/shoutcast/tcpdump.sh
+Restart=always
+TimeoutStartSec=0

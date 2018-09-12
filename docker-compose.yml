@@ -2,13 +2,16 @@ version: "3.6"
 
 services:
   shoutcast:
-    build: ./shoutcast
+    build: ./shoutcast/Systemd
     ports:
       - 8000:8000
     volumes:
+      - "/tmp/var/folders/cg/_6hd71p14jb8rym25wmd0dnr0000gq/T/tmp.1XqH7dpC:/run"
       - "./playlist:/usr/local/shoutcast/sc_trans/music"
       - "./logs:/var/log/messages"
       - "./shoutcast/sc_serv.conf:/usr/local/shoutcast/sc_serv.conf"
       - "./shoutcast/sc_trans_basic.conf:/usr/local/shoutcast/sc_trans/sc_trans_basic.conf"
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
     cap_add:
       - ALL
+    privileged: true
